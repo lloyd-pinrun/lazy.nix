@@ -1,0 +1,3 @@
+{
+  # TODO: flash.nvim spec
+}
