@@ -12,6 +12,12 @@
       flake-parts.follows = "flake-parts";
       nixpkgs.follows = "nixpkgs";
     };
+
+    nerdy.url = "github:lloyd-pinrun/nerdy.nix";
+    nerdy.inputs = {
+      flake-parts.follows = "flake-parts";
+      nixpkgs.follows = "nixpkgs";
+    };
     
     # -- Packages --
     avante.url = "github:yetone/avante.nvim";
@@ -34,7 +40,7 @@
 
         nixvimModule = {
           inherit pkgs;
-          module = import ./default.nix;
+          # module = import ./default.nix;
           # imports = [ ./config ./extras ];
           specialArgs = { inherit lib self; };
         };
