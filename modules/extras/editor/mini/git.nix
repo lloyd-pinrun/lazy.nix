@@ -1,11 +1,15 @@
-{ lib, config, ... }: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (config.plugins) mini;
   inherit (lib) hasAttr mkIf;
 in {
   plugins = {
     mini = {
       enable = true;
-      modules.git = { };
+      modules.git = {};
     };
   };
 

@@ -1,4 +1,8 @@
-{ lib, config, ... }: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (config.plugins) mini;
   inherit (lib) hasAttr mkIf;
 in {

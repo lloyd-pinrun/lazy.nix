@@ -1,7 +1,12 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) snacks;
 
-  inherit (lib)
+  inherit
+    (lib)
     flatten
     flip
     mergeAttrs
@@ -9,9 +14,9 @@
     pipe
     ;
 
-  flatMap = fn: flip pipe [ (map fn) flatten ];
+  flatMap = fn: flip pipe [(map fn) flatten];
 
-  modes = [ "n" "x" ];
+  modes = ["n" "x"];
 
   actions = [
     {
@@ -37,6 +42,8 @@
 in {
   plugins.snacks.settings.gitbrowse.enabled = true;
 
-  keymaps = mkIf (snacks.enabled && snacks.settings.gitbrowse.enabled)
-    flatMap (action: map (mode: mergeAttrs {inherit mode;} action) modes) actions;
+  keymaps =
+    mkIf (snacks.enabled && snacks.settings.gitbrowse.enabled)
+    flatMap (action: map (mode: mergeAttrs {inherit mode;} action) modes)
+    actions;
 }

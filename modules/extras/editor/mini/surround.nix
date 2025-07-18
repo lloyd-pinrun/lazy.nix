@@ -1,10 +1,10 @@
 {
   plugins = {
-  mini = {
-    enable = true;
+    mini = {
+      enable = true;
 
-    modules = {
-      surround = {
+      modules = {
+        surround = {
           mappings = {
             add = "gsa"; # -- Add surrounding in Normal and Visual modes
             delete = "gsd"; # -- Delete surrounding

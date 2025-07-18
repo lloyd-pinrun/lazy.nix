@@ -1,44 +1,43 @@
 {
+  flake-parts-lib,
   inputs,
   lib,
   self,
   ...
-}:
-{
+}: let
+  inherit (lib) attrValues;
+in {
   imports = [
-    inputs.flake-parts.flakeModules.partitions
-
     ./nixvim.nix
     ./overlays.nix
     ./pkgs-by-name.nix
+
+    inputs.flake-parts.flakeModules.partitions
   ];
 
-  partitions = {
-    dev = {
-      module = ./dev;
-      extraInputsFlake = ./dev;
-    };
-  };
+  partitions.dev.extraInputsFlake = ./dev;
+  partitions.dev.module = ./dev;
 
   partitionedAttrs = {
     checks = "dev";
-    devShells = "dev";
     formatter = "dev";
   };
 
-  perSystem =
-    {
-      config,
-      system,
-      ...
-    }:
-    {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = lib.attrValues self.overlays;
-        config.allowUnfree = true;
-      };
+  perSystem = {
+    config,
+    system,
+    ...
+  }: {
+    _module.args.pkgs = import inputs.nixpkgs {
+      inherit system;
 
-      packages.default = config.packages.lazy-nixvim;
+      overlays = attrValues self.overlays;
+      config = {
+        allowUnfree = true;
+        allowAliases = false;
+      };
     };
+
+    packages.default = config.packages.lazy;
+  };
 }

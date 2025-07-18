@@ -1,8 +1,13 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.lazy.extras.ui) edgy;
   inherit (config.plugins) aerial neo-tree;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
@@ -56,19 +61,20 @@ in {
             open = "Neotree position=top buffers";
           })
 
-          (mkIf aerial.enable && neo-tree.enable {
-            title = "Outline";
-            ft = "aerial";
+          (mkIf aerial.enable
+            && neo-tree.enable {
+              title = "Outline";
+              ft = "aerial";
 
-            filter = ''
-              function(buf)
-                return vim.b[buf].neo_tree_source == "aerial"
-              end
-            '';
+              filter = ''
+                function(buf)
+                  return vim.b[buf].neo_tree_source == "aerial"
+                end
+              '';
 
-            pinned = true;
-            open = "AerialOpen";
-          })
+              pinned = true;
+              open = "AerialOpen";
+            })
         ];
 
         wo = {

@@ -2,36 +2,29 @@
   inputs,
   self,
   ...
-}:
-{
-  imports = [
-    inputs.nixvim.flakeModules.default
-  ];
+}: {
+  imports = [inputs.nixvim.flakeModules.default];
 
   nixvim = {
     packages.enable = true;
     checks.enable = true;
   };
 
-  flake.nixvimModules = {
-    default = ../modules/nixvim;
-  };
+  flake.nixvimModules.default = ../modules;
 
-  perSystem =
-    { system, ... }:
-    {
-      nixvimConfigurations = {
-        nixvim = inputs.nixvim.lib.evalNixvim {
-          inherit system;
+  perSystem = {system, ...}: {
+    nixvimConfigurations = {
+      lazy = inputs.nixvim.lib.evalNixvim {
+        inherit system;
 
-          extraSpecialArgs = {
-            inherit inputs system self;
-          };
-
-          modules = [
-            self.nixvimModules.default
-          ];
+        extraSpecialArgs = {
+          inherit inputs system self;
         };
+
+        modules = [
+          self.nixvimModules.default
+        ];
       };
     };
+  };
 }

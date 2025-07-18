@@ -1,16 +1,21 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) editor;
   inherit (config.extras.editor) aerial;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
     ;
 in {
-  options.extras.editor.aerial.enable =  mkEnableOption "Aerial Symbol Browser";
+  options.extras.editor.aerial.enable = mkEnableOption "Aerial Symbol Browser";
 
-  config = mkIf aerial.enable {
-    
-  };
+  config =
+    mkIf aerial.enable {
+    };
 }

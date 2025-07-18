@@ -1,11 +1,15 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) snacks;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
 in {
   plugins.snacks.settings.explorer.enabled = true;
-
 }

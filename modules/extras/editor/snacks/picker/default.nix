@@ -1,5 +1,5 @@
 {
-  imports = [ ./git.nix ];
+  imports = [./git.nix];
 
   plugins.snacks.settings.picker = {
     formatters.file.truncate = 100;

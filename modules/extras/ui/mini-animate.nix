@@ -1,8 +1,13 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.extras) snacks;
   inherit (config.extras.ui) mini-animate smear-cursor;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkMerge

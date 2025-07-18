@@ -1,7 +1,12 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config) lazy;
 
-  inherit (lib)
+  inherit
+    (lib)
     literalExpression
     mkEnableOption
     mkOption
@@ -11,12 +16,12 @@
   styleOpts = {
     options = {
       border = mkOption {
-        type = types.enum [ "single" "double" "rounded" "solid" "shadow" "curved" "bold" "none" ];
+        type = types.enum ["single" "double" "rounded" "solid" "shadow" "curved" "bold" "none"];
         default = "rounded";
         description = "Border style";
       };
 
-      transparent = mkEnableOption "window transparency" // { default = true; };
+      transparent = mkEnableOption "window transparency" // {default = true;};
 
       winblend = mkOption {
         type = types.int;
@@ -26,7 +31,7 @@
     };
   };
 in {
-  imports = [ ./icons.nix ./lib.nix ];
+  imports = [./icons.nix ./lib.nix];
 
   options.lazy = {
     leader = mkOption {
@@ -49,12 +54,12 @@ in {
 
     spec = mkOption {
       type = types.listOf types.attrs;
-      default = [ ];
+      default = [];
       description = ''
         Used to set `which-key.settings.spec`
       '';
     };
-    
+
     style = mkOption {
       type = types.attrsOf (types.submodule styleOpts);
       description = "Top-level style configuration";

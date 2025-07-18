@@ -1,4 +1,4 @@
-{ lib, ... }: let
+{lib, ...}: let
   inherit (lib) mkForce;
 
   enable = mkForce true;
@@ -20,17 +20,17 @@ in {
 
     grug-far = {
       inherit enable;
-      lazyLoad.settings.cmd = [ "GrugFar" ];
+      lazyLoad.settings.cmd = ["GrugFar"];
     };
 
     todo-comments = {
       inherit enable;
-      lazyLoad.settings.cmd = [ "TodoTrouble" "TodoTelescope" ];
+      lazyLoad.settings.cmd = ["TodoTrouble" "TodoTelescope"];
     };
 
     trouble = {
       inherit enable;
-      lazyLoad.settings.cmd = [ "Trouble" ];
+      lazyLoad.settings.cmd = ["Trouble"];
     };
 
     which-key = {

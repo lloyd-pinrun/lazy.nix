@@ -1,4 +1,8 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.lazy.extras) snacks;
 
   inherit (config.lib.lazy) mkWhichKey';
@@ -10,22 +14,68 @@ in {
     lazy.spec = [
       # -- Groups --
       # scratch
-      (mkWhichKey' { key = "<leader>."; icon = ""; group = "scratch"; })
+      (mkWhichKey' {
+        key = "<leader>.";
+        icon = "";
+        group = "scratch";
+      })
       # code
-      (mkWhichKey' { key = "<leader>c"; icon = md.code.Tags; group = "code"; mode = [ "n" "v" ]; })
-      (mkWhichKey' { key = "<leader>cd"; icon = md.list.Status; group = "diagnostics"; })
-      (mkWhichKey' { key = "<leader>cf"; icon = md.format.list.Text; group = "format"; mode = [ "n" "v" ]; })
-      (mkWhichKey' { key = "<leader>cs"; icon = md.code.Json; group = "surround"; mode = [ "n" "v" ]; })
+      (mkWhichKey' {
+        key = "<leader>c";
+        icon = md.code.Tags;
+        group = "code";
+        mode = ["n" "v"];
+      })
+      (mkWhichKey' {
+        key = "<leader>cd";
+        icon = md.list.Status;
+        group = "diagnostics";
+      })
+      (mkWhichKey' {
+        key = "<leader>cf";
+        icon = md.format.list.Text;
+        group = "format";
+        mode = ["n" "v"];
+      })
+      (mkWhichKey' {
+        key = "<leader>cs";
+        icon = md.code.Json;
+        group = "surround";
+        mode = ["n" "v"];
+      })
       # file/find
-      (mkWhichKey' { key = "<leader>f"; icon = md.file.Find; group = "file/find"; mode = [ "n" "v" ]; })
+      (mkWhichKey' {
+        key = "<leader>f";
+        icon = md.file.Find;
+        group = "file/find";
+        mode = ["n" "v"];
+      })
       # git
-      (mkWhichKey' { key = "<leader>g"; icon = cod.Octoface; group = "git"; mode = [ "n" "v" "x" ]; })
+      (mkWhichKey' {
+        key = "<leader>g";
+        icon = cod.Octoface;
+        group = "git";
+        mode = ["n" "v" "x"];
+      })
       # notifications
-      (mkWhichKey' { key = "<leader>n"; icon = md.lightning.bolt.Outline; group = "notifications"; })
+      (mkWhichKey' {
+        key = "<leader>n";
+        icon = md.lightning.bolt.Outline;
+        group = "notifications";
+      })
       # search
-      (mkWhichKey' { key = "<leader>s"; icon = md.text.search.Variant; group = "search"; mode = [ "n" "v" ]; })
+      (mkWhichKey' {
+        key = "<leader>s";
+        icon = md.text.search.Variant;
+        group = "search";
+        mode = ["n" "v"];
+      })
       # ui
-      (mkWhichKey' { key = "<leader>u"; icon = md.lightbulb.Outline; group = "ui"; })
+      (mkWhichKey' {
+        key = "<leader>u";
+        icon = md.lightbulb.Outline;
+        group = "ui";
+      })
 
       # -- Keys --
       # scratch
@@ -72,7 +122,7 @@ in {
         key = "<leader>gB";
         action.__raw = "function() Snacks.gitbrowse() end";
         desc = "Git Browse (open)";
-        mode = [ "n" "x" ];
+        mode = ["n" "x"];
       })
       (mkWhichKey' {
         key = "<leader>gY";
@@ -82,7 +132,7 @@ in {
           end
         '';
         desc = "Git Browse (copy)";
-        mode = [ "n" "x" ];
+        mode = ["n" "x"];
       })
       (mkWhichKey' {
         key = "<leader>gc";

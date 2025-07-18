@@ -1,4 +1,8 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) mini;
   inherit (config.plugins) persistence;
 

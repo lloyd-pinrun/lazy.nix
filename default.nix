@@ -1,3 +1,3 @@
 {
-  imports = [ ./config ./extras ];
+  imports = [./config ./extras];
 }

@@ -1,4 +1,8 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) illuminate;
   inherit (config.plugins) indent-blankline;
   inherit (config.plugins) mini;

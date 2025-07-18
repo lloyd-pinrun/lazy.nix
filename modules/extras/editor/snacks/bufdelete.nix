@@ -1,4 +1,8 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) snacks;
   inherit (lib) hasAttr mkIf;
 in {

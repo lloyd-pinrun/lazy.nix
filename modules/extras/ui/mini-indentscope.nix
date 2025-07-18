@@ -1,8 +1,13 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.extras.ui) indent-blankline mini-indentscope;
   inherit (config.plugins) snacks;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkMerge
@@ -14,7 +19,7 @@ in {
   config = mkIf mini-indentscope.enable (mkMerge [
     {
       assertions = toList {
-        assertion = (!indent-blankline.enable);
+        assertion = !indent-blankline.enable;
         message = "mini-indentscope should not be used if indent-blankline is enabled";
       };
     }

@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.just.flakeModule
+    ./devshell
     inputs.pre-commit.flakeModule
   ];
 
@@ -8,18 +8,8 @@
     config,
     pkgs,
     ...
-  }: let
-    inherit (config) just;
-  in {
+  }: {
     formatter = pkgs.alejandra;
-
-    just = {
-      enable = true;
-      recipes = {
-        "format" = "nix fmt .";
-        "check *ARGS" = "pre-commit run --all-files --hook-stage manual {{ ARGS }}";
-      };
-    };
 
     pre-commit = {
       check.enable = false;
@@ -60,15 +50,6 @@
           statix.enable = true;
         };
       };
-    };
-
-    devShells.default = pkgs.mkShell {
-      name = "lazy.nix development shell";
-      inputsFrom = [just.devShell];
-      shellHook = ''
-        ${config.pre-commit.installationScript}
-        echo 1>&2 "$(id -un) | $(nix eval --raw --impure --expr 'builtins.currentSystem') | $(uname -r) "
-      '';
     };
   };
 }

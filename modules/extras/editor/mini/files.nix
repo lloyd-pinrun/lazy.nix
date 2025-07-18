@@ -1,11 +1,14 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) mini;
   inherit (lib) hasAttr mkIf;
 in {
-
   plugins.mini = {
     enable = true;
-    modules.files = { };
+    modules.files = {};
   };
 
   # TODO: separate CWD and root dir

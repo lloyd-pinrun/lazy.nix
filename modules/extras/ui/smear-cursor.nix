@@ -1,13 +1,18 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.lazy.extras.ui) smear-cursor;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     ;
 in {
   options.lazy.extras.ui.smear-cursor.enable = mkEnableOption "smear-cursor";
-  
+
   config = mkIf smear-cursor.enable {
     plugins = {
       smear-cursor = {

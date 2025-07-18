@@ -1,11 +1,15 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.plugins) mini;
   inherit (lib) hasAttr mkIf;
 in {
   plugins = {
     mini = {
       enable = true;
-      modules.fuzzy = { };
+      modules.fuzzy = {};
     };
 
     telescope.settings.defaults = mkIf (mini.enable && hasAttr "fuzzy" mini.modules) {

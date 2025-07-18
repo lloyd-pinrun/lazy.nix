@@ -1,4 +1,8 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.lazy.extras) snacks;
 
   inherit (lib) mkEnableOption mkIf;
@@ -6,7 +10,7 @@
 in {
   options.lazy.extras.snacks.enable = mkEnableOption "snacks";
 
-  imports = [ ./keymaps.nix ];
+  imports = [./keymaps.nix];
   config = mkIf snacks.enable {
     plugins.snacks = {
       enable = true;
@@ -21,7 +25,7 @@ in {
         };
 
         indent.enabled = true;
-        
+
         notifier = {
           enabled = true;
           style = "minimal";
@@ -33,11 +37,11 @@ in {
           sources.explorer.layout.layout.positition = "right";
           layout.present = "telescope";
           win.input.keys = {
-            "\\" = (listToUnkeyedAttrs [ "vsplit" ]) // { mode = "n"; };
-            "-" = (listToUnkeyedAttrs [ "split" ]) // { mode = "n"; };
+            "\\" = (listToUnkeyedAttrs ["vsplit"]) // {mode = "n";};
+            "-" = (listToUnkeyedAttrs ["split"]) // {mode = "n";};
           };
         };
-        
+
         # TODO: track https://github.com/folke/snacks.nvim/issues/1360
         scroll.enabled = false;
         quickfile.enabled = true;
@@ -46,11 +50,13 @@ in {
     };
   };
 
-   autoCmd = [
+  autoCmd = [
     {
       desc = "Pre init Function";
-      event = [ "VimEnter" ];
-      callback = mkRaw #lua
+      event = ["VimEnter"];
+      callback =
+        mkRaw #lua
+        
         ''
           -- Taken from https://github.com/folke/snacks.nvim?tab=readme-ov-file#-usage
           function()

@@ -21,7 +21,7 @@ in {
           })
         end
       '';
-      mode = [ "n" "v" ];
+      mode = ["n" "v"];
       desc = "Search and Replace";
       icon = md.find.Replace;
     })

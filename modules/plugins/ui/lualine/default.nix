@@ -3,9 +3,8 @@ let
     a.fg = "none";
     c.bg = "none";
   };
-
 in {
-  imports = [ ./sections.nix ];
+  imports = [./sections.nix];
   plugins.lualine = {
     enable = true;
     lazyLoad.settings.event = [
@@ -51,9 +50,8 @@ in {
 
         globalstatus = true;
       };
-      
-      extensions = [ "fzf" ];
+
+      extensions = ["fzf"];
     };
   };
 }
-

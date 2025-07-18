@@ -1,5 +1,10 @@
-{ config, lib, ... }: let
-  inherit (config.lib.lazy)
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit
+    (config.lib.lazy)
     icons
     mkWhichKey'
     ;
@@ -43,7 +48,7 @@ in {
               return s
             end
           '';
-          
+
           # NOTE: ensures bufferline names are all unique
           enforce_regular_tabs = false;
 
@@ -82,7 +87,7 @@ in {
               highlight = "Directory";
             }
           ];
-        }; 
+        };
       };
     };
   };
@@ -149,4 +154,3 @@ in {
     })
   ];
 }
-
